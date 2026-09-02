@@ -1,0 +1,3719 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Muhammad Ahmed Shahzad — Data Analyst</title>
+<meta name="description" content="Portfolio of Muhammad Ahmed Shahzad, Data Science graduate focused on data analytics, SQL, Python, Power BI, NLP and machine learning.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
+:root {
+  --bg: #0A0D14;
+  --surface: #12151F;
+  --surface-2: #171B27;
+  --border: #262B3A;
+  --text: #E7E9EE;
+  --text-muted: #8B93A7;
+
+  --accent: #F2B84B;
+  --accent-dim: #B98F3C;
+  --secondary: #6C8EFF;
+  --teal: #4DD9C0;
+
+  --node-color: 108, 142, 255;
+
+  --shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+  --radius: 14px;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+html[data-theme="light"] {
+  --bg: #F5F6FA;
+  --surface: #FFFFFF;
+  --surface-2: #EDEFF5;
+  --border: #DCE0EA;
+  --text: #14161C;
+  --text-muted: #5B6172;
+
+  --accent: #C6862A;
+  --accent-dim: #A5711F;
+  --secondary: #3E5FD9;
+  --teal: #128F79;
+
+  --node-color: 62, 95, 217;
+
+  --shadow: 0 20px 50px -25px rgba(30,35,60,0.25);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  transition: background 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse 70% 50% at 50% -10%,
+      rgba(108,142,255,0.10),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 90% 100%,
+      rgba(242,184,75,0.06),
+      transparent 60%
+    );
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+header.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 32px;
+
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+
+  font-size: 14.5px;
+  color: var(--text-muted);
+}
+
+.nav-links a {
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.theme-toggle {
+  width: 44px;
+  height: 24px;
+
+  border-radius: 20px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.theme-toggle::after {
+  content: '';
+
+  position: absolute;
+  top: 2px;
+  left: 2px;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+  background: var(--accent);
+
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+html[data-theme="light"] .theme-toggle::after {
+  transform: translateX(20px);
+}
+
+.nav-toggle-btn {
+  display: none;
+
+  background: none;
+  border: none;
+  color: var(--text);
+
+  font-size: 22px;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+.hero {
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(400px, 0.95fr);
+
+  align-items: center;
+  gap: 40px;
+
+  padding-top: 90px;
+  padding-bottom: 60px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+
+  color: var(--teal);
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 22px;
+}
+
+.eyebrow::before {
+  content: '';
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+  background: var(--teal);
+
+  box-shadow:
+    0 0 0 4px
+    color-mix(in srgb, var(--teal) 18%, transparent);
+
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%,100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.25);
+    opacity: .6;
+  }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  line-height: 1.05;
+
+  letter-spacing: -0.035em;
+
+  max-width: 850px;
+}
+
+.hero h1 .highlight {
+  color: var(--accent);
+  position: relative;
+}
+
+.hero h1 .highlight::after {
+  content: '';
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+
+  height: 2px;
+
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+
+  animation: underlineIn 1.2s ease .6s forwards;
+}
+
+@keyframes underlineIn {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero .subtitle {
+  margin-top: 26px;
+
+  max-width: 600px;
+
+  font-size: 17px;
+  line-height: 1.75;
+
+  color: var(--text-muted);
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+
+  margin-top: 40px;
+
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14.5px;
+
+  padding: 14px 26px;
+
+  border-radius: 10px;
+  border: 1px solid transparent;
+
+  cursor: pointer;
+
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255,255,255,.22) 45%,
+    transparent 70%
+  );
+
+  transform: translateX(-130%);
+  transition: transform .6s ease;
+}
+
+.btn:hover::before {
+  transform: translateX(130%);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #14161C;
+
+  box-shadow:
+    0 8px 24px
+    color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-dim);
+
+  box-shadow:
+    0 12px 30px
+    color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.btn-ghost {
+  background: transparent;
+
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  border-color: var(--secondary);
+
+  background:
+    color-mix(in srgb, var(--secondary) 8%, transparent);
+
+  box-shadow:
+    0 8px 25px
+    color-mix(in srgb, var(--secondary) 12%, transparent);
+}
+
+
+/* =========================================================
+   HERO STATS
+========================================================= */
+.hero-stats {
+  display: flex;
+  gap: 48px;
+
+  margin-top: 62px;
+
+  flex-wrap: wrap;
+}
+
+.hero-stat {
+  position: relative;
+}
+
+.hero-stat .num {
+  font-family: var(--font-display);
+
+  font-size: 28px;
+  font-weight: 700;
+
+  color: var(--text);
+}
+
+.hero-stat .label {
+  font-family: var(--font-mono);
+
+  font-size: 12px;
+  color: var(--text-muted);
+
+  margin-top: 4px;
+}
+
+
+/* =========================================================
+   3D DATA → INSIGHT HERO SCENE
+========================================================= */
+.hero-visual {
+  position: relative;
+
+  width: 100%;
+  max-width: 560px;
+  height: 590px;
+
+  margin-left: auto;
+
+  perspective: 1100px;
+
+  transform-style: preserve-3d;
+
+  isolation: isolate;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform .25s cubic-bezier(.2,.7,.2,1);
+}
+
+.scene-glow {
+  position: absolute;
+
+  width: 430px;
+  height: 430px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%,-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      color-mix(in srgb, var(--secondary) 18%, transparent),
+      transparent 65%
+    );
+
+  filter: blur(15px);
+
+  animation: sceneGlow 5s ease-in-out infinite;
+}
+
+@keyframes sceneGlow {
+  0%,100% {
+    transform: translate(-50%,-50%) scale(1);
+    opacity: .75;
+  }
+
+  50% {
+    transform: translate(-50%,-50%) scale(1.14);
+    opacity: 1;
+  }
+}
+
+.scene-grid {
+  position: absolute;
+  inset: 25px;
+
+  border-radius: 50%;
+
+  opacity: .24;
+
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--secondary) 20%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--secondary) 20%, transparent) 1px,
+      transparent 1px
+    );
+
+  background-size: 30px 30px;
+
+  mask-image: radial-gradient(circle, black, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle, black, transparent 70%);
+
+  transform: perspective(600px) rotateX(68deg) translateY(90px);
+}
+
+
+/* =========================================================
+   ORBITS
+========================================================= */
+.orbit {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  border: 1px solid
+    color-mix(in srgb, var(--secondary) 30%, transparent);
+
+  border-radius: 50%;
+
+  transform-style: preserve-3d;
+
+  pointer-events: none;
+}
+
+.orbit-a {
+  width: 420px;
+  height: 190px;
+
+  margin-left: -210px;
+  margin-top: -95px;
+
+  transform: rotateX(68deg) rotateZ(-18deg);
+
+  animation: orbitRotateA 16s linear infinite;
+}
+
+.orbit-b {
+  width: 360px;
+  height: 160px;
+
+  margin-left: -180px;
+  margin-top: -80px;
+
+  transform: rotateX(72deg) rotateZ(58deg);
+
+  border-color:
+    color-mix(in srgb, var(--teal) 28%, transparent);
+
+  animation: orbitRotateB 13s linear infinite reverse;
+}
+
+.orbit-c {
+  width: 470px;
+  height: 210px;
+
+  margin-left: -235px;
+  margin-top: -105px;
+
+  transform: rotateX(75deg) rotateZ(118deg);
+
+  border-color:
+    color-mix(in srgb, var(--accent) 22%, transparent);
+
+  animation: orbitRotateC 19s linear infinite;
+}
+
+@keyframes orbitRotateA {
+  from {
+    transform: rotateX(68deg) rotateZ(-18deg) rotate(0deg);
+  }
+
+  to {
+    transform: rotateX(68deg) rotateZ(-18deg) rotate(360deg);
+  }
+}
+
+@keyframes orbitRotateB {
+  from {
+    transform: rotateX(72deg) rotateZ(58deg) rotate(0deg);
+  }
+
+  to {
+    transform: rotateX(72deg) rotateZ(58deg) rotate(360deg);
+  }
+}
+
+@keyframes orbitRotateC {
+  from {
+    transform: rotateX(75deg) rotateZ(118deg) rotate(0deg);
+  }
+
+  to {
+    transform: rotateX(75deg) rotateZ(118deg) rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   ORBIT NODES
+========================================================= */
+.orbit-node {
+  position: absolute;
+
+  padding: 7px 12px;
+
+  border-radius: 8px;
+
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: .06em;
+
+  background:
+    color-mix(in srgb, var(--surface) 88%, transparent);
+
+  border: 1px solid var(--border);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
+
+  backdrop-filter: blur(10px);
+
+  white-space: nowrap;
+
+  animation: nodeFloat 3s ease-in-out infinite;
+}
+
+.orbit-node.sql {
+  left: -18px;
+  top: 42%;
+
+  color: var(--accent);
+
+  animation-delay: -.4s;
+}
+
+.orbit-node.python {
+  right: -22px;
+  top: 18%;
+
+  color: var(--teal);
+
+  animation-delay: -1.2s;
+}
+
+.orbit-node.bi {
+  right: 7%;
+  bottom: 7%;
+
+  color: var(--secondary);
+
+  animation-delay: -2s;
+}
+
+@keyframes nodeFloat {
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+
+/* =========================================================
+   CENTRAL DATA → INSIGHT CORE
+========================================================= */
+.insight-core {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 250px;
+  height: 250px;
+
+  margin-left: -125px;
+  margin-top: -125px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform-style: preserve-3d;
+
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      color-mix(in srgb, var(--surface-2) 95%, transparent),
+      color-mix(in srgb, var(--bg) 94%, transparent)
+    );
+
+  border:
+    1px solid
+    color-mix(in srgb, var(--secondary) 45%, var(--border));
+
+  box-shadow:
+    0 0 0 1px
+      color-mix(in srgb, var(--secondary) 8%, transparent),
+    0 0 70px
+      color-mix(in srgb, var(--secondary) 16%, transparent),
+    inset 0 0 45px
+      color-mix(in srgb, var(--secondary) 8%, transparent);
+
+  animation: coreFloat 4s ease-in-out infinite;
+}
+
+@keyframes coreFloat {
+  0%,100% {
+    transform: translateY(0) translateZ(0);
+  }
+
+  50% {
+    transform: translateY(-10px) translateZ(15px);
+  }
+}
+
+.core-ring {
+  position: absolute;
+
+  inset: -15px;
+
+  border-radius: 50%;
+
+  border:
+    1px dashed
+    color-mix(in srgb, var(--teal) 38%, transparent);
+
+  animation: ringSpin 14s linear infinite;
+}
+
+.core-ring::before,
+.core-ring::after {
+  content: '';
+
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: var(--teal);
+
+  box-shadow:
+    0 0 14px var(--teal);
+}
+
+.core-ring::before {
+  top: 8%;
+  left: 16%;
+}
+
+.core-ring::after {
+  right: 8%;
+  bottom: 20%;
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 14px var(--accent);
+}
+
+.core-ring-2 {
+  position: absolute;
+
+  inset: -31px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    color-mix(in srgb, var(--accent) 15%, transparent);
+
+  animation: ringSpin 22s linear infinite reverse;
+}
+
+@keyframes ringSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.core-content {
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+.core-kicker {
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+  letter-spacing: .16em;
+
+  color: var(--text-muted);
+
+  margin-bottom: 8px;
+}
+
+.core-title {
+  font-family: var(--font-display);
+
+  font-size: 25px;
+  line-height: 1;
+
+  font-weight: 700;
+
+  letter-spacing: -.04em;
+}
+
+.core-title .arrow {
+  color: var(--accent);
+
+  display: inline-block;
+
+  margin: 0 3px;
+
+  animation: arrowPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes arrowPulse {
+  0%,100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+.core-sub {
+  font-family: var(--font-mono);
+
+  font-size: 8px;
+
+  color: var(--teal);
+
+  letter-spacing: .12em;
+
+  margin-top: 10px;
+}
+
+
+/* =========================================================
+   ASTRONAUT / DATA EXPLORER
+========================================================= */
+.astronaut {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 145px;
+  height: 190px;
+
+  margin-left: -72px;
+  margin-top: -175px;
+
+  transform: translateZ(100px) scale(.78);
+
+  pointer-events: none;
+
+  animation: astronautFloat 5s ease-in-out infinite;
+
+  z-index: 7;
+}
+
+@keyframes astronautFloat {
+  0%,100% {
+    transform:
+      translateZ(100px)
+      translateY(0)
+      rotateY(-3deg)
+      scale(.78);
+  }
+
+  50% {
+    transform:
+      translateZ(125px)
+      translateY(-12px)
+      rotateY(3deg)
+      scale(.78);
+  }
+}
+
+.helmet {
+  position: absolute;
+
+  width: 92px;
+  height: 92px;
+
+  left: 27px;
+  top: 0;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 34% 25%,
+      #ffffff,
+      #d9dee8 25%,
+      #9da6b8 60%,
+      #5c6576 100%
+    );
+
+  border: 4px solid #737d90;
+
+  box-shadow:
+    0 18px 35px rgba(0,0,0,.32),
+    inset -8px -10px 20px rgba(0,0,0,.15);
+
+  z-index: 4;
+}
+
+.helmet::before {
+  content: '';
+
+  position: absolute;
+
+  width: 74px;
+  height: 53px;
+
+  left: 5px;
+  top: 17px;
+
+  border-radius: 45%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #111827,
+      #263957 48%,
+      #111a2a
+    );
+
+  border: 3px solid #4d596c;
+
+  box-shadow:
+    inset 8px 7px 18px rgba(108,142,255,.20);
+}
+
+.visor {
+  position: absolute;
+
+  width: 56px;
+  height: 11px;
+
+  left: 18px;
+  top: 28px;
+
+  border-radius: 50%;
+
+  background: rgba(108,142,255,.34);
+
+  filter: blur(1px);
+
+  transform: rotate(-5deg);
+}
+
+.visor::after {
+  content: '';
+
+  position: absolute;
+
+  width: 28px;
+  height: 3px;
+
+  left: 10px;
+  top: 2px;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.6);
+
+  transform: rotate(-7deg);
+}
+
+.body {
+  position: absolute;
+
+  width: 88px;
+  height: 98px;
+
+  left: 29px;
+  top: 82px;
+
+  border-radius: 28px 28px 18px 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f4f6f9,
+      #b9c0cc 55%,
+      #727b8b
+    );
+
+  border: 3px solid #7c8697;
+
+  box-shadow:
+    0 18px 35px rgba(0,0,0,.30);
+
+  z-index: 2;
+}
+
+.body::before {
+  content: '';
+
+  position: absolute;
+
+  width: 22px;
+  height: 40px;
+
+  left: -17px;
+  top: 21px;
+
+  border-radius: 14px;
+
+  background: #aeb6c3;
+
+  border: 3px solid #737d90;
+
+  transform: rotate(15deg);
+}
+
+.body::after {
+  content: '';
+
+  position: absolute;
+
+  width: 22px;
+  height: 40px;
+
+  right: -17px;
+  top: 21px;
+
+  border-radius: 14px;
+
+  background: #aeb6c3;
+
+  border: 3px solid #737d90;
+
+  transform: rotate(-15deg);
+}
+
+.chest {
+  position: absolute;
+
+  width: 49px;
+  height: 35px;
+
+  left: 19px;
+  top: 23px;
+
+  border-radius: 7px;
+
+  background: #151b28;
+
+  border: 1px solid #4b5668;
+
+  padding: 6px;
+
+  display: flex;
+  gap: 4px;
+  align-items: center;
+
+  z-index: 3;
+}
+
+.chest i {
+  display: block;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: var(--teal);
+
+  box-shadow: 0 0 8px var(--teal);
+
+  animation: chestBlink 1.5s ease-in-out infinite;
+}
+
+.chest i:nth-child(2) {
+  background: var(--accent);
+
+  box-shadow: 0 0 8px var(--accent);
+
+  animation-delay: .3s;
+}
+
+.chest i:nth-child(3) {
+  background: var(--secondary);
+
+  box-shadow: 0 0 8px var(--secondary);
+
+  animation-delay: .6s;
+}
+
+@keyframes chestBlink {
+  0%,100% {
+    opacity: .45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   FLOATING DATA PANELS
+========================================================= */
+.data-panel {
+  position: absolute;
+
+  min-width: 145px;
+
+  padding: 13px 15px;
+
+  border-radius: 11px;
+
+  background:
+    color-mix(in srgb, var(--surface) 88%, transparent);
+
+  border: 1px solid var(--border);
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.22);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  z-index: 8;
+
+  animation: panelFloat 4s ease-in-out infinite;
+}
+
+.data-panel .panel-label {
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  color: var(--text-muted);
+
+  letter-spacing: .08em;
+
+  margin-bottom: 6px;
+}
+
+.data-panel .panel-value {
+  font-family: var(--font-display);
+
+  font-size: 20px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+.data-panel .panel-value small {
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  color: var(--teal);
+
+  font-weight: 500;
+
+  margin-left: 4px;
+}
+
+.panel-performance {
+  left: 0;
+  top: 16%;
+
+  border-color:
+    color-mix(in srgb, var(--teal) 28%, var(--border));
+
+  animation-delay: -.7s;
+}
+
+.panel-reviews {
+  right: 0;
+  top: 31%;
+
+  border-color:
+    color-mix(in srgb, var(--accent) 25%, var(--border));
+
+  animation-delay: -1.8s;
+}
+
+.panel-pipeline {
+  left: 8%;
+  bottom: 9%;
+
+  min-width: 205px;
+
+  animation-delay: -2.5s;
+}
+
+@keyframes panelFloat {
+  0%,100% {
+    transform: translateY(0) translateZ(35px);
+  }
+
+  50% {
+    transform: translateY(-9px) translateZ(55px);
+  }
+}
+
+
+/* =========================================================
+   MINI GRAPH
+========================================================= */
+.mini-bars {
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 4px;
+
+  height: 27px;
+
+  margin-top: 9px;
+}
+
+.mini-bars span {
+  width: 8px;
+
+  border-radius: 3px 3px 1px 1px;
+
+  background: var(--secondary);
+
+  opacity: .75;
+
+  animation: barPulse 1.7s ease-in-out infinite;
+}
+
+.mini-bars span:nth-child(1) {
+  height: 12px;
+}
+
+.mini-bars span:nth-child(2) {
+  height: 18px;
+
+  animation-delay: .1s;
+}
+
+.mini-bars span:nth-child(3) {
+  height: 14px;
+
+  animation-delay: .2s;
+}
+
+.mini-bars span:nth-child(4) {
+  height: 24px;
+
+  animation-delay: .3s;
+}
+
+.mini-bars span:nth-child(5) {
+  height: 20px;
+
+  animation-delay: .4s;
+}
+
+.mini-bars span:nth-child(6) {
+  height: 27px;
+
+  animation-delay: .5s;
+}
+
+@keyframes barPulse {
+  0%,100% {
+    transform: scaleY(.8);
+  }
+
+  50% {
+    transform: scaleY(1.05);
+  }
+}
+
+
+/* =========================================================
+   PIPELINE
+========================================================= */
+.pipeline-flow {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 8px;
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  color: var(--text-muted);
+}
+
+.pipeline-flow b {
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.pipeline-flow .pipe-arrow {
+  color: var(--accent);
+}
+
+
+/* =========================================================
+   FLOATING TECHNOLOGY CHIPS
+========================================================= */
+.floating-chip {
+  position: absolute;
+
+  padding: 7px 11px;
+
+  border-radius: 7px;
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  letter-spacing: .05em;
+
+  background:
+    color-mix(in srgb, var(--surface-2) 90%, transparent);
+
+  border: 1px solid var(--border);
+
+  color: var(--text-muted);
+
+  z-index: 9;
+
+  animation: chipFloat 3.6s ease-in-out infinite;
+}
+
+.chip-nlp {
+  right: 9%;
+  bottom: 25%;
+
+  color: var(--accent);
+
+  animation-delay: -.4s;
+}
+
+.chip-python {
+  left: 3%;
+  top: 42%;
+
+  color: var(--teal);
+
+  animation-delay: -1.2s;
+}
+
+.chip-powerbi {
+  right: 16%;
+  bottom: 3%;
+
+  color: var(--secondary);
+
+  animation-delay: -2.1s;
+}
+
+.chip-sql {
+  left: 21%;
+  top: 6%;
+
+  color: var(--accent);
+
+  animation-delay: -2.8s;
+}
+
+@keyframes chipFloat {
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+
+/* =========================================================
+   SCENE DATA STREAMS
+========================================================= */
+.data-stream {
+  position: absolute;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--secondary),
+      transparent
+    );
+
+  opacity: .3;
+
+  transform-origin: left center;
+
+  animation: streamMove 3s ease-in-out infinite;
+}
+
+.stream-1 {
+  width: 170px;
+
+  left: 12%;
+  top: 33%;
+
+  transform: rotate(18deg);
+
+  animation-delay: -.5s;
+}
+
+.stream-2 {
+  width: 140px;
+
+  right: 10%;
+  top: 58%;
+
+  transform: rotate(-25deg);
+
+  animation-delay: -1.5s;
+}
+
+.stream-3 {
+  width: 120px;
+
+  left: 30%;
+  bottom: 20%;
+
+  transform: rotate(-8deg);
+
+  animation-delay: -2s;
+}
+
+@keyframes streamMove {
+  0%,100% {
+    opacity: .1;
+    transform: scaleX(.65) rotate(18deg);
+  }
+
+  50% {
+    opacity: .45;
+    transform: scaleX(1) rotate(18deg);
+  }
+}
+
+
+/* =========================================================
+   SECTION HEADERS
+========================================================= */
+.section-head {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 16px;
+
+  margin-bottom: 48px;
+}
+
+.section-tag {
+  font-family: var(--font-mono);
+
+  font-size: 13px;
+
+  color: var(--secondary);
+
+  letter-spacing: 0.06em;
+}
+
+.section-rule {
+  flex: 1;
+
+  height: 1px;
+
+  background: var(--border);
+}
+
+section.section-block {
+  padding: 110px 0;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+.about-grid {
+  display: grid;
+
+  grid-template-columns: 1.1fr 1fr;
+
+  gap: 64px;
+
+  align-items: start;
+}
+
+.about-text p {
+  color: var(--text-muted);
+
+  font-size: 16px;
+
+  margin-bottom: 18px;
+}
+
+.about-text strong {
+  color: var(--text);
+
+  font-weight: 600;
+}
+
+.toolbox-title {
+  font-family: var(--font-mono);
+
+  font-size: 12.5px;
+
+  color: var(--text-muted);
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+
+  margin-bottom: 18px;
+}
+
+.tag-grid {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.tag {
+  font-family: var(--font-mono);
+
+  font-size: 13px;
+
+  padding: 9px 15px;
+
+  border-radius: 8px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  color: var(--text);
+
+  transition:
+    border-color .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.tag:hover {
+  border-color: var(--secondary);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 22px
+    color-mix(in srgb, var(--secondary) 10%, transparent);
+}
+
+.tag.accent-tag {
+  border-color:
+    color-mix(in srgb, var(--accent) 40%, var(--border));
+
+  color: var(--accent);
+}
+
+.edu-card {
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius);
+
+  padding: 26px;
+
+  margin-top: 32px;
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.edu-card:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    color-mix(in srgb, var(--secondary) 35%, var(--border));
+
+  box-shadow: var(--shadow);
+}
+
+.edu-card .edu-degree {
+  font-family: var(--font-display);
+
+  font-weight: 600;
+
+  font-size: 17px;
+}
+
+.edu-card .edu-school {
+  color: var(--secondary);
+
+  font-size: 14.5px;
+
+  margin-top: 6px;
+}
+
+.edu-card .edu-note {
+  color: var(--text-muted);
+
+  font-size: 13.5px;
+
+  margin-top: 10px;
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+.project-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+
+  perspective: 1000px;
+}
+
+.project-card {
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius);
+
+  padding: 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  position: relative;
+
+  overflow: hidden;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform .35s cubic-bezier(.2,.7,.2,1),
+    box-shadow .3s ease,
+    border-color .3s ease;
+}
+
+.project-card::before {
+  content: '';
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  top: -90px;
+  right: -90px;
+
+  background:
+    radial-gradient(
+      circle,
+      color-mix(in srgb, var(--secondary) 12%, transparent),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+.project-card:hover {
+  transform:
+    perspective(900px)
+    rotateX(3deg)
+    rotateY(-3deg)
+    translateY(-8px);
+
+  box-shadow:
+    0 25px 60px -25px rgba(0,0,0,.7);
+
+  border-color:
+    color-mix(in srgb, var(--secondary) 45%, var(--border));
+}
+
+.project-index {
+  font-family: var(--font-mono);
+
+  font-size: 12.5px;
+
+  color: var(--text-muted);
+
+  margin-bottom: 20px;
+}
+
+.project-card h3 {
+  font-family: var(--font-display);
+
+  font-size: 19px;
+
+  font-weight: 600;
+
+  margin-bottom: 12px;
+}
+
+.project-card p.desc {
+  color: var(--text-muted);
+
+  font-size: 14.5px;
+
+  flex: 1;
+
+  margin-bottom: 20px;
+}
+
+.project-metric {
+  font-family: var(--font-mono);
+
+  font-size: 13px;
+
+  color: var(--teal);
+
+  margin-bottom: 18px;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px dashed var(--border);
+}
+
+.project-stack {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 22px;
+}
+
+.project-stack span {
+  font-family: var(--font-mono);
+
+  font-size: 11.5px;
+
+  padding: 4px 10px;
+
+  border-radius: 6px;
+
+  background: var(--surface-2);
+
+  color: var(--text-muted);
+}
+
+.project-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: var(--accent);
+
+  transition: color .2s ease;
+}
+
+.project-link:hover {
+  color: var(--teal);
+}
+
+.project-link .arrow {
+  transition: transform .2s ease;
+}
+
+.project-card:hover .project-link .arrow {
+  transform: translateX(5px);
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+.contact-block {
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: 20px;
+
+  padding: 64px 48px;
+
+  text-align: center;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.contact-block::before {
+  content: '';
+
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  left: 50%;
+  top: -200px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      color-mix(in srgb, var(--secondary) 14%, transparent),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+.contact-block h2 {
+  font-family: var(--font-display);
+
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+
+  font-weight: 700;
+
+  max-width: 640px;
+
+  margin: 0 auto 18px;
+
+  position: relative;
+}
+
+.contact-block .accent-word {
+  color: var(--accent);
+}
+
+.contact-block .sub {
+  color: var(--text-muted);
+
+  font-size: 16px;
+
+  max-width: 480px;
+
+  margin: 0 auto 40px;
+
+  position: relative;
+}
+
+.contact-links {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 16px;
+
+  flex-wrap: wrap;
+
+  position: relative;
+}
+
+.contact-pill {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 14px 22px;
+
+  border-radius: 10px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface-2);
+
+  font-size: 14.5px;
+
+  font-weight: 500;
+
+  transition:
+    border-color .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.contact-pill:hover {
+  border-color: var(--secondary);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px
+    color-mix(in srgb, var(--secondary) 12%, transparent);
+}
+
+.contact-pill svg {
+  width: 18px;
+  height: 18px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer {
+  padding: 36px 0 48px;
+
+  text-align: center;
+
+  font-family: var(--font-mono);
+
+  font-size: 12.5px;
+
+  color: var(--text-muted);
+
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================================
+   REVEAL ANIMATION
+========================================================= */
+.reveal {
+  opacity: 0;
+
+  transform: translateY(25px);
+
+  transition:
+    opacity .7s ease,
+    transform .7s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 980px) {
+
+  .hero {
+    grid-template-columns: 1fr;
+
+    padding-top: 130px;
+
+    gap: 20px;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .eyebrow {
+    justify-content: center;
+  }
+
+  .hero h1 {
+    margin: 0 auto;
+  }
+
+  .hero .subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    margin: 10px auto 0;
+
+    max-width: 620px;
+
+    height: 570px;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (max-width: 860px) {
+
+  .about-grid {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+}
+
+
+@media (max-width: 720px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-toggle-btn {
+    display: block;
+  }
+
+  .wrap {
+    padding: 0 22px;
+  }
+
+  .nav-inner {
+    padding: 16px 22px;
+  }
+
+  .hero {
+    min-height: auto;
+
+    padding-top: 125px;
+    padding-bottom: 50px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.35rem, 12vw, 3.4rem);
+  }
+
+  .hero .subtitle {
+    font-size: 15.5px;
+  }
+
+  .hero-stats {
+    gap: 28px;
+    margin-top: 50px;
+  }
+
+  .hero-stat .num {
+    font-size: 24px;
+  }
+
+  .hero-visual {
+    height: 470px;
+
+    transform: scale(.88);
+
+    transform-origin: top center;
+
+    margin-bottom: -55px;
+  }
+
+  .insight-core {
+    transform: scale(.82);
+  }
+
+  .orbit-a {
+    width: 350px;
+    height: 160px;
+
+    margin-left: -175px;
+    margin-top: -80px;
+  }
+
+  .orbit-b {
+    width: 310px;
+    height: 140px;
+
+    margin-left: -155px;
+    margin-top: -70px;
+  }
+
+  .orbit-c {
+    width: 390px;
+    height: 175px;
+
+    margin-left: -195px;
+    margin-top: -87px;
+  }
+
+  .data-panel {
+    transform: scale(.85);
+  }
+
+  .panel-performance {
+    left: -10px;
+  }
+
+  .panel-reviews {
+    right: -10px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-block {
+    padding: 44px 24px;
+  }
+
+  section.section-block {
+    padding: 76px 0;
+  }
+
+  .section-head {
+    margin-bottom: 36px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .hero-visual {
+    height: 420px;
+
+    transform: scale(.73);
+
+    margin-left: -13.5%;
+    margin-right: -13.5%;
+
+    width: 127%;
+
+    margin-bottom: -110px;
+  }
+
+  .hero-stats {
+    gap: 20px;
+  }
+
+  .hero-stat .label {
+    font-size: 10px;
+  }
+
+  .panel-performance {
+    left: 0;
+  }
+
+  .panel-reviews {
+    right: 0;
+  }
+
+  .panel-pipeline {
+    left: 5%;
+  }
+
+  .floating-chip {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: .001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- =======================================================
+     EXISTING ANIMATED BACKGROUND
+======================================================= -->
+<canvas id="bg-canvas"></canvas>
+<div class="bg-gradient"></div>
+
+
+<!-- =======================================================
+     NAVIGATION
+======================================================= -->
+<header class="site-nav">
+
+  <div class="nav-inner">
+
+    <div class="logo">
+      ahmed<span>.dev</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-right">
+
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Toggle light and dark theme">
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+
+<!-- =======================================================
+     HERO
+======================================================= -->
+<section class="hero wrap">
+
+  <!-- LEFT SIDE -->
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      Open to Data Analyst &amp; Analytics roles
+    </div>
+
+    <h1>
+      Turning raw data into
+      <br>
+      insights that <span class="highlight">drive decisions.</span>
+    </h1>
+
+    <p class="subtitle">
+      I'm Muhammad Ahmed Shahzad, a Data Science graduate focused on
+      turning messy data into clear, actionable insights. I work across
+      SQL, Python, Power BI, data visualization, NLP, and machine learning
+      to build analysis that is practical, measurable, and easy to act on.
+    </p>
+
+    <div class="hero-cta">
+
+      <a href="#projects" class="btn btn-primary">
+        Explore My Work ↗
+      </a>
+
+      <a
+        href="Ahmed-CV.pdf"
+        class="btn btn-ghost"
+        download>
+        Download CV ↓
+      </a>
+
+    </div>
+
+
+    <div class="hero-stats">
+
+      <div class="hero-stat">
+        <div class="num">4</div>
+        <div class="label">SHIPPED PROJECTS</div>
+      </div>
+
+      <div class="hero-stat">
+        <div class="num">88.8%</div>
+        <div class="label">NLP MODEL ACCURACY</div>
+      </div>
+
+      <div class="hero-stat">
+        <div class="num">50K+</div>
+        <div class="label">REVIEWS CLASSIFIED</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       RIGHT SIDE — 3D DATA VISUAL
+  ====================================================== -->
+  <div
+    class="hero-visual"
+    id="dataScene">
+
+    <div class="scene" id="scene">
+
+      <div class="scene-glow"></div>
+      <div class="scene-grid"></div>
+
+
+      <!-- ORBITS -->
+      <div class="orbit orbit-a">
+
+        <div class="orbit-node sql">
+          SQL
+        </div>
+
+      </div>
+
+      <div class="orbit orbit-b">
+
+        <div class="orbit-node python">
+          PYTHON
+        </div>
+
+      </div>
+
+      <div class="orbit orbit-c">
+
+        <div class="orbit-node bi">
+          POWER BI
+        </div>
+
+      </div>
+
+
+      <!-- DATA STREAMS -->
+      <div class="data-stream stream-1"></div>
+      <div class="data-stream stream-2"></div>
+      <div class="data-stream stream-3"></div>
+
+
+      <!-- CENTRAL CORE -->
+      <div class="insight-core">
+
+        <div class="core-ring"></div>
+        <div class="core-ring-2"></div>
+
+        <div class="core-content">
+
+          <div class="core-kicker">
+            ANALYTICS ENGINE
+          </div>
+
+          <div class="core-title">
+            DATA
+            <span class="arrow">→</span>
+            INSIGHT
+          </div>
+
+          <div class="core-sub">
+            CLEAN · ANALYZE · VISUALIZE
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ASTRONAUT -->
+      <div class="astronaut">
+
+        <div class="helmet">
+          <div class="visor"></div>
+        </div>
+
+        <div class="body">
+
+          <div class="chest">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PERFORMANCE PANEL -->
+      <div class="data-panel panel-performance">
+
+        <div class="panel-label">
+          MODEL PERFORMANCE
+        </div>
+
+        <div class="panel-value">
+          88.8%
+          <small>ACCURACY</small>
+        </div>
+
+        <div class="mini-bars">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+      </div>
+
+
+      <!-- REVIEWS PANEL -->
+      <div class="data-panel panel-reviews">
+
+        <div class="panel-label">
+          TEXT DATASET
+        </div>
+
+        <div class="panel-value">
+          50K+
+          <small>REVIEWS</small>
+        </div>
+
+      </div>
+
+
+      <!-- PIPELINE PANEL -->
+      <div class="data-panel panel-pipeline">
+
+        <div class="panel-label">
+          ANALYTICS PIPELINE
+        </div>
+
+        <div class="pipeline-flow">
+
+          <b>DATA</b>
+
+          <span class="pipe-arrow">→</span>
+
+          <b>MODEL</b>
+
+          <span class="pipe-arrow">→</span>
+
+          <b>BI</b>
+
+        </div>
+
+      </div>
+
+
+      <!-- FLOATING TECHNOLOGY LABELS -->
+      <div class="floating-chip chip-nlp">
+        NLP
+      </div>
+
+      <div class="floating-chip chip-python">
+        PYTHON
+      </div>
+
+      <div class="floating-chip chip-powerbi">
+        POWER BI
+      </div>
+
+      <div class="floating-chip chip-sql">
+        SQL
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
+<section id="about" class="section-block wrap reveal">
+
+  <div class="section-head">
+
+    <span class="section-tag">
+      01 — About
+    </span>
+
+    <div class="section-rule"></div>
+
+  </div>
+
+
+  <div class="about-grid">
+
+    <div class="about-text">
+
+      <p>
+        I'm a recent
+        <strong>
+          BS Data Science graduate from MNS University of Agriculture, Multan
+        </strong>,
+        with hands-on project experience turning messy, real-world data into
+        structured analysis, classification pipelines, NLP solutions, and
+        practical business insights.
+      </p>
+
+      <p>
+        Alongside my technical work, I also ran an e-commerce store on Daraz,
+        tracking sales performance and using seller dashboard data to guide
+        stocking decisions. That experience gave me an early understanding
+        of how data can support practical business decisions.
+      </p>
+
+      <p>
+        I'm currently looking for an
+        <strong>
+          internship or entry-level opportunity
+        </strong>
+        where I can contribute to real analytics projects while continuing
+        to grow my skills in SQL, Python, Power BI, data visualization,
+        and machine learning.
+      </p>
+
+
+      <div class="edu-card">
+
+        <div class="edu-degree">
+          BS Data Science
+        </div>
+
+        <div class="edu-school">
+          MNS University of Agriculture, Multan · 2022 – 2026
+        </div>
+
+        <div class="edu-note">
+          Final Year Project:
+          Complaint &amp; Recommendation Management Portal
+        </div>
+
+      </div>
+
+
+      <div class="edu-card">
+
+        <div class="edu-degree">
+          E-Commerce Store Owner
+        </div>
+
+        <div class="edu-school">
+          Zaryan Collections (Daraz) · Jun 2025 – Sep 2025
+        </div>
+
+        <div class="edu-note">
+          Managed listings and inventory; analyzed seller dashboard data
+          to inform stocking decisions.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- TOOLBOX -->
+    <div class="about-toolbox">
+
+      <div class="toolbox-title">
+        Technical Toolbox
+      </div>
+
+      <div class="tag-grid">
+
+        <span class="tag accent-tag">
+          Python
+        </span>
+
+        <span class="tag accent-tag">
+          SQL
+        </span>
+
+        <span class="tag accent-tag">
+          Power BI
+        </span>
+
+        <span class="tag">
+          Pandas
+        </span>
+
+        <span class="tag">
+          Scikit-learn
+        </span>
+
+        <span class="tag">
+          PHP &amp; MySQL
+        </span>
+
+        <span class="tag">
+          MS Excel
+        </span>
+
+        <span class="tag">
+          Git &amp; GitHub
+        </span>
+
+        <span class="tag">
+          Jupyter / Colab
+        </span>
+
+        <span class="tag">
+          Data Cleaning
+        </span>
+
+        <span class="tag">
+          Data Visualization
+        </span>
+
+      </div>
+
+
+      <div
+        class="toolbox-title"
+        style="margin-top:32px;">
+
+        Certifications
+
+      </div>
+
+      <div class="tag-grid">
+
+        <a
+          href="Certificate.pdf"
+          target="_blank"
+          rel="noopener"
+          class="tag"
+          style="
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+          ">
+
+          Data Analytics Essentials —
+          Cisco Networking Academy ↓
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     PROJECTS
+======================================================= -->
+<section id="projects" class="section-block wrap reveal">
+
+  <div class="section-head">
+
+    <span class="section-tag">
+      02 — Projects
+    </span>
+
+    <div class="section-rule"></div>
+
+  </div>
+
+
+  <div class="project-grid">
+
+
+    <!-- PROJECT 1 -->
+    <div class="project-card">
+
+      <div class="project-index">
+        FYP
+      </div>
+
+      <h3>
+        Campus Complaint &amp; Recommendation Portal
+      </h3>
+
+      <p class="desc">
+        A full-stack web system for students to file complaints,
+        track ticket status, and get resolutions — with a role-based
+        admin dashboard for assigning and closing tickets.
+      </p>
+
+      <div class="project-metric">
+        Ticketing workflow with auto-reopen on unsatisfied resolution
+      </div>
+
+      <div class="project-stack">
+
+        <span>PHP</span>
+        <span>MySQL</span>
+        <span>Bootstrap</span>
+
+      </div>
+
+      <a
+        href="https://github.com/MUHAMMADAHMEDSHAHZAD/complaint-recommendation-portal"
+        target="_blank"
+        rel="noopener"
+        class="project-link">
+
+        View on GitHub
+
+        <span class="arrow">
+          →
+        </span>
+
+      </a>
+
+    </div>
+
+
+    <!-- PROJECT 2 -->
+    <div class="project-card">
+
+      <div class="project-index">
+        DA · 01
+      </div>
+
+      <h3>
+        AI Tool Adoption &amp; Cost Analysis
+      </h3>
+
+      <p class="desc">
+        Business analytics project examining how departments adopt
+        AI tools — cost tracking, ROI comparison, and adoption trends,
+        with SQL queries and data visualizations to guide budget decisions.
+      </p>
+
+      <div class="project-metric">
+        Sales dept. leads at 215% ROI vs. 160% for lowest performer
+      </div>
+
+      <div class="project-stack">
+
+        <span>Python</span>
+        <span>SQL</span>
+        <span>Seaborn</span>
+
+      </div>
+
+      <a
+        href="https://github.com/MUHAMMADAHMEDSHAHZAD/ai-tool-adoption-cost-analysis"
+        target="_blank"
+        rel="noopener"
+        class="project-link">
+
+        View on GitHub
+
+        <span class="arrow">
+          →
+        </span>
+
+      </a>
+
+    </div>
+
+
+    <!-- PROJECT 3 -->
+    <div class="project-card">
+
+      <div class="project-index">
+        ML · 01
+      </div>
+
+      <h3>
+        NLP Sentiment Analysis
+      </h3>
+
+      <p class="desc">
+        Text classification model trained on 50,000 IMDB movie reviews —
+        from raw HTML-laced text to a clean TF-IDF pipeline with error
+        analysis on misclassified reviews.
+      </p>
+
+      <div class="project-metric">
+        88.8% accuracy with Logistic Regression + TF-IDF
+      </div>
+
+      <div class="project-stack">
+
+        <span>Python</span>
+        <span>NLTK</span>
+        <span>TF-IDF</span>
+
+      </div>
+
+      <a
+        href="https://github.com/MUHAMMADAHMEDSHAHZAD/nlp-sentiment-classification"
+        target="_blank"
+        rel="noopener"
+        class="project-link">
+
+        View on GitHub
+
+        <span class="arrow">
+          →
+        </span>
+
+      </a>
+
+    </div>
+
+
+    <!-- PROJECT 4 -->
+    <div class="project-card">
+
+      <div class="project-index">
+        ML · 02
+      </div>
+
+      <h3>
+        Customer Churn Prediction
+      </h3>
+
+      <p class="desc">
+        End-to-end classification pipeline on telecom customer data —
+        cleaning, feature engineering, and comparing three models to
+        flag customers likely to leave.
+      </p>
+
+      <div class="project-metric">
+        Logistic Regression, Random Forest &amp; XGBoost compared
+      </div>
+
+      <div class="project-stack">
+
+        <span>Python</span>
+        <span>Scikit-learn</span>
+        <span>XGBoost</span>
+
+      </div>
+
+      <a
+        href="https://github.com/MUHAMMADAHMEDSHAHZAD/customer-churn-prediction"
+        target="_blank"
+        rel="noopener"
+        class="project-link">
+
+        View on GitHub
+
+        <span class="arrow">
+          →
+        </span>
+
+      </a>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     CONTACT
+======================================================= -->
+<section id="contact" class="section-block wrap reveal">
+
+  <div class="section-head">
+
+    <span class="section-tag">
+      03 — Contact
+    </span>
+
+    <div class="section-rule"></div>
+
+  </div>
+
+
+  <div class="contact-block">
+
+    <h2>
+      Let's talk about your
+      <span class="accent-word">
+        data problem.
+      </span>
+    </h2>
+
+    <p class="sub">
+      Open to data analytics, data science, machine learning,
+      and entry-level opportunities. Feel free to reach out directly.
+    </p>
+
+
+    <div class="contact-links">
+
+      <!-- EMAIL -->
+      <a
+        class="contact-pill"
+        href="mailto:muhammadahmedshahzad05@gmail.com">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2">
+
+          <path
+            d="M4 4h16v16H4z"
+            opacity="0"/>
+
+          <path
+            d="M22 6l-10 7L2 6"/>
+
+          <path
+            d="M2 6h20v12H2z"/>
+
+        </svg>
+
+        muhammadahmedshahzad05@gmail.com
+
+      </a>
+
+
+      <!-- LINKEDIN -->
+      <a
+        class="contact-pill"
+        href="https://www.linkedin.com/in/m-ahmedshahzad/"
+        target="_blank"
+        rel="noopener">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor">
+
+          <path
+            d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.25h4.5V23h-4.5V8.25zM8.5 8.25h4.31v2.01h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V23h-4.5v-6.4c0-1.53-.03-3.5-2.13-3.5-2.14 0-2.47 1.67-2.47 3.39V23h-4.5V8.25z"/>
+
+        </svg>
+
+        linkedin.com/in/m-ahmedshahzad
+
+      </a>
+
+
+      <!-- GITHUB -->
+      <a
+        class="contact-pill"
+        href="https://github.com/MUHAMMADAHMEDSHAHZAD"
+        target="_blank"
+        rel="noopener">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor">
+
+          <path
+            d="M12 .5C5.73.5.5 5.73.5 12c0 5.1 3.29 9.4 7.86 10.94.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.1-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.72-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18a10.9 10.9 0 015.75 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .3.2.66.79.55A10.51 10.51 0 0023.5 12c0-6.27-5.23-11.5-11.5-11.5z"/>
+
+        </svg>
+
+        github.com/MUHAMMADAHMEDSHAHZAD
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+<footer>
+
+  © <span id="year"></span>
+  Muhammad Ahmed Shahzad
+  — Built with HTML, CSS &amp; vanilla JS
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   FOOTER YEAR
+========================================================= */
+
+document.getElementById('year').textContent =
+  new Date().getFullYear();
+
+
+/* =========================================================
+   SAFE LOCAL STORAGE
+========================================================= */
+
+function localStorageSafe(action, key, value) {
+
+  try {
+
+    if (action === 'get') {
+      return localStorage.getItem(key);
+    }
+
+    if (action === 'set') {
+      return localStorage.setItem(key, value);
+    }
+
+  } catch (e) {
+
+    window.__themeMemory =
+      window.__themeMemory || {};
+
+    if (action === 'get') {
+      return window.__themeMemory[key];
+    }
+
+    if (action === 'set') {
+      window.__themeMemory[key] = value;
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   THEME TOGGLE
+========================================================= */
+
+const root =
+  document.documentElement;
+
+const themeToggle =
+  document.getElementById('themeToggle');
+
+const savedTheme =
+  localStorageSafe('get', 'theme');
+
+
+if (savedTheme === 'light') {
+
+  root.setAttribute(
+    'data-theme',
+    'light'
+  );
+
+}
+
+
+themeToggle.addEventListener(
+  'click',
+  () => {
+
+    const isLight =
+      root.getAttribute('data-theme') === 'light';
+
+    if (isLight) {
+
+      root.removeAttribute('data-theme');
+
+      localStorageSafe(
+        'set',
+        'theme',
+        'dark'
+      );
+
+    } else {
+
+      root.setAttribute(
+        'data-theme',
+        'light'
+      );
+
+      localStorageSafe(
+        'set',
+        'theme',
+        'light'
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   EXISTING MOVING DATA NETWORK BACKGROUND
+========================================================= */
+
+const canvas =
+  document.getElementById('bg-canvas');
+
+const ctx =
+  canvas.getContext('2d');
+
+let w;
+let h;
+let nodes;
+
+const NODE_COUNT_DESKTOP = 60;
+const NODE_COUNT_MOBILE = 28;
+const LINK_DIST = 130;
+
+const prefersReducedMotion =
+  window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+
+function getAccentRGB() {
+
+  const style =
+    getComputedStyle(root);
+
+  return (
+    style
+      .getPropertyValue('--node-color')
+      .trim()
+    ||
+    '108, 142, 255'
+  );
+
+}
+
+
+function resize() {
+
+  w =
+    canvas.width =
+    window.innerWidth;
+
+  h =
+    canvas.height =
+    window.innerHeight;
+
+}
+
+
+function initNodes() {
+
+  const count =
+    window.innerWidth < 720
+      ? NODE_COUNT_MOBILE
+      : NODE_COUNT_DESKTOP;
+
+  nodes =
+    Array.from(
+      { length: count },
+      () => ({
+
+        x: Math.random() * w,
+
+        y: Math.random() * h,
+
+        vx:
+          (Math.random() - 0.5)
+          * 0.25,
+
+        vy:
+          (Math.random() - 0.5)
+          * 0.25,
+
+        r:
+          Math.random() * 1.6
+          + 1
+
+      })
+    );
+
+}
+
+
+function step() {
+
+  ctx.clearRect(
+    0,
+    0,
+    w,
+    h
+  );
+
+  const rgb =
+    getAccentRGB();
+
+
+  /* MOVE NODES */
+
+  for (const n of nodes) {
+
+    n.x += n.vx;
+    n.y += n.vy;
+
+    if (
+      n.x < 0 ||
+      n.x > w
+    ) {
+      n.vx *= -1;
+    }
+
+    if (
+      n.y < 0 ||
+      n.y > h
+    ) {
+      n.vy *= -1;
+    }
+
+  }
+
+
+  /* DRAW CONNECTIONS */
+
+  for (
+    let i = 0;
+    i < nodes.length;
+    i++
+  ) {
+
+    for (
+      let j = i + 1;
+      j < nodes.length;
+      j++
+    ) {
+
+      const a = nodes[i];
+      const b = nodes[j];
+
+      const dx =
+        a.x - b.x;
+
+      const dy =
+        a.y - b.y;
+
+      const dist =
+        Math.sqrt(
+          dx * dx +
+          dy * dy
+        );
+
+
+      if (dist < LINK_DIST) {
+
+        const alpha =
+          (1 - dist / LINK_DIST)
+          * 0.16;
+
+        ctx.strokeStyle =
+          `rgba(${rgb}, ${alpha})`;
+
+        ctx.lineWidth = 1;
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+          a.x,
+          a.y
+        );
+
+        ctx.lineTo(
+          b.x,
+          b.y
+        );
+
+        ctx.stroke();
+
+      }
+
+    }
+
+  }
+
+
+  /* DRAW NODES */
+
+  for (const n of nodes) {
+
+    ctx.fillStyle =
+      `rgba(${rgb}, 0.55)`;
+
+    ctx.beginPath();
+
+    ctx.arc(
+      n.x,
+      n.y,
+      n.r,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+  }
+
+
+  if (!prefersReducedMotion) {
+
+    requestAnimationFrame(step);
+
+  }
+
+}
+
+
+resize();
+initNodes();
+step();
+
+
+window.addEventListener(
+  'resize',
+  () => {
+
+    resize();
+    initNodes();
+
+  }
+);
+
+
+/* =========================================================
+   3D HERO MOUSE PARALLAX
+========================================================= */
+
+const scene =
+  document.getElementById('scene');
+
+const heroVisual =
+  document.getElementById('dataScene');
+
+
+if (
+  scene &&
+  heroVisual &&
+  !prefersReducedMotion
+) {
+
+  let targetX = 0;
+  let targetY = 0;
+
+  let currentX = 0;
+  let currentY = 0;
+
+
+  heroVisual.addEventListener(
+    'pointermove',
+    (event) => {
+
+      const rect =
+        heroVisual.getBoundingClientRect();
+
+      const x =
+        (event.clientX - rect.left)
+        / rect.width;
+
+      const y =
+        (event.clientY - rect.top)
+        / rect.height;
+
+
+      targetY =
+        (x - .5) * 12;
+
+      targetX =
+        (y - .5) * -10;
+
+    }
+  );
+
+
+  heroVisual.addEventListener(
+    'pointerleave',
+    () => {
+
+      targetX = 0;
+      targetY = 0;
+
+    }
+  );
+
+
+  function animateScene() {
+
+    currentX +=
+      (targetX - currentX)
+      * .06;
+
+    currentY +=
+      (targetY - currentY)
+      * .06;
+
+
+    scene.style.transform =
+      `rotateX(${currentX}deg)
+       rotateY(${currentY}deg)`;
+
+
+    requestAnimationFrame(
+      animateScene
+    );
+
+  }
+
+
+  animateScene();
+
+}
+
+
+/* =========================================================
+   PROJECT CARD 3D TILT
+========================================================= */
+
+if (!prefersReducedMotion) {
+
+  const cards =
+    document.querySelectorAll(
+      '.project-card'
+    );
+
+
+  cards.forEach(card => {
+
+    card.addEventListener(
+      'pointermove',
+      (event) => {
+
+        const rect =
+          card.getBoundingClientRect();
+
+        const x =
+          event.clientX - rect.left;
+
+        const y =
+          event.clientY - rect.top;
+
+
+        const rotateY =
+          ((x / rect.width) - .5)
+          * 7;
+
+        const rotateX =
+          ((y / rect.height) - .5)
+          * -7;
+
+
+        card.style.transform =
+          `perspective(900px)
+           rotateX(${rotateX}deg)
+           rotateY(${rotateY}deg)
+           translateY(-8px)`;
+
+      }
+    );
+
+
+    card.addEventListener(
+      'pointerleave',
+      () => {
+
+        card.style.transform = '';
+
+      }
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealItems =
+  document.querySelectorAll(
+    '.reveal'
+  );
+
+
+if (
+  'IntersectionObserver'
+  in window
+) {
+
+  const observer =
+    new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach(
+          entry => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              entry.target.classList.add(
+                'visible'
+              );
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
+          }
+        );
+
+      },
+      {
+        threshold: .12
+      }
+    );
+
+
+  revealItems.forEach(
+    item =>
+      observer.observe(item)
+  );
+
+} else {
+
+  revealItems.forEach(
+    item =>
+      item.classList.add(
+        'visible'
+      )
+  );
+
+}
+
+
+/* =========================================================
+   MAGNETIC BUTTON EFFECT
+========================================================= */
+
+if (!prefersReducedMotion) {
+
+  const buttons =
+    document.querySelectorAll(
+      '.btn'
+    );
+
+
+  buttons.forEach(btn => {
+
+    btn.addEventListener(
+      'pointermove',
+      (event) => {
+
+        const rect =
+          btn.getBoundingClientRect();
+
+        const x =
+          event.clientX -
+          rect.left -
+          rect.width / 2;
+
+        const y =
+          event.clientY -
+          rect.top -
+          rect.height / 2;
+
+
+        btn.style.transform =
+          `translate(${x * .06}px,
+                     ${y * .06}px)
+           translateY(-3px)`;
+
+      }
+    );
+
+
+    btn.addEventListener(
+      'pointerleave',
+      () => {
+
+        btn.style.transform = '';
+
+      }
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   END
+========================================================= */
+
+</script>
+
+</body>
+</html>
+```
